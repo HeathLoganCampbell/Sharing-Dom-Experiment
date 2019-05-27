@@ -17,14 +17,16 @@ app.get("/player", function(req, res) {
 	res.sendFile(__dirname + "/player.html");
 });
 
+changeHistory = [];
 io.on("connection", function(socket) {
-	console.log("a user connected");
-
-	io.emit("message", { for: "everyone" });
-
 	socket.on("recorder", function(msg) {
 		console.log(msg);
+		changeHistory.push(msg);
 		socket.broadcast.emit("player", msg);
+	});
+	socket.on("downloadHistory", function(msg) {
+		for (var i = 0; i < changeHistory.length; i++)
+			socket.emit("player", changeHistory[i]);
 	});
 });
 
