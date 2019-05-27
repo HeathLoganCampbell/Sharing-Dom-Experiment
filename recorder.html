@@ -7,15 +7,32 @@
 		<title>Recorder</title>
 		<script src="customisedLibs/mutation-summary/src/mutation-summary.js"></script>
 		<script src="customisedLibs/mutation-summary/util/tree-mirror.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
 		<script>
+			var socket = io();
+
+			socket.on("message", function(msg) {
+				console.log(msg);
+			});
+
 			var mirrorParams = {
 				initialize: function(rootId, children) {
-					console.log("init");
-					console.log(JSON.stringify([rootId, children]));
+					// console.log("init");
+					// console.log(JSON.stringify([rootId, children]));
+					socket.emit("recorder", {
+						type: "initialize",
+						args: [rootId, children]
+					});
 				},
 				applyChanged: function(removed, addedOrMoved, attributes, text) {
-					console.log("applyChanged");
-					console.log(JSON.stringify([removed, addedOrMoved, attributes, text]));
+					// console.log("applyChanged");
+					// console.log(
+					// 	JSON.stringify([removed, addedOrMoved, attributes, text])
+					// );
+					socket.emit("recorder", {
+						type: "applyChanged",
+						args: [removed, addedOrMoved, attributes, text]
+					});
 				},
 				createElement: function(tagName) {
 					console.log("createElement");
@@ -42,7 +59,7 @@
 			};
 
 			window.onload = () => {
-				var treeMirror = new TreeMirrorClient(document, mirrorParams);
+				var treeMirror = new TreeMirrorClient(document.body, mirrorParams);
 			};
 		</script>
 	</head>

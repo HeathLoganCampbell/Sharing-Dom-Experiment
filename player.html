@@ -7,8 +7,16 @@
 		<title>Player</title>
 		<script src="customisedLibs/mutation-summary/src/mutation-summary.js"></script>
 		<script src="customisedLibs/mutation-summary/util/tree-mirror.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
 		<script>
 			var mirror;
+			var socket = io();
+
+			socket.on("player", function(msg) {
+				console.log(msg);
+				mirror[msg.type].apply(mirror, msg.args);
+			});
+
 			window.onload = () => {
 				var base;
 				mirror = new TreeMirror(document.body, {
