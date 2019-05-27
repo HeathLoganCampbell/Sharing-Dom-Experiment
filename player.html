@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta hpttp-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Player</title>
+		<script src="customisedLibs/mutation-summary/src/mutation-summary.js"></script>
+		<script src="customisedLibs/mutation-summary/util/tree-mirror.js"></script>
+		<script>
+			var mirror;
+			window.onload = () => {
+				var base;
+				mirror = new TreeMirror(document.body, {
+					createElement: function(tagName) {
+						if (tagName == "SCRIPT") {
+							var node = document.createElement("NO-SCRIPT");
+							node.style.display = "none";
+							return node;
+						}
+
+						// if (tagName == "HEAD") {
+						// 	var node = document.createElement("HEAD");
+						// 	node.appendChild(document.createElement("BASE"));
+						// 	node.firstChild.href = base;
+						// 	return node;
+						// }
+					}
+				});
+			};
+		</script>
+	</head>
+	<body></body>
+</html>

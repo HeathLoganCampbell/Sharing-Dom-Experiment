@@ -1,0 +1,30 @@
+{
+	"name": "Sharescreen",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "babel src -d lib",
+		"watch": "babel src --watch -d lib",
+		"start": "nodemon src/index.js --exec babel-node --presets babel-preset-env"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tracking-bee/Sharing-Dom-Experiment.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/tracking-bee/Sharing-Dom-Experiment/issues"
+	},
+	"homepage": "https://github.com/tracking-bee/Sharing-Dom-Experiment#readme",
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-preset-env": "^1.7.0",
+		"nodemon": "^1.19.1"
+	},
+	"dependencies": {
+		"mutation-summary": "^0.1.1"
+	}
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Recorder</title>
+		<script src="customisedLibs/mutation-summary/src/mutation-summary.js"></script>
+		<script src="customisedLibs/mutation-summary/util/tree-mirror.js"></script>
+		<script>
+			var mirrorParams = {
+				initialize: function(rootId, children) {
+					console.log("init");
+					console.log(JSON.stringify([rootId, children]));
+				},
+				applyChanged: function(removed, addedOrMoved, attributes, text) {
+					console.log("applyChanged");
+					console.log(JSON.stringify([removed, addedOrMoved, attributes, text]));
+				},
+				createElement: function(tagName) {
+					console.log("createElement");
+					if (tagName == "SCRIPT") {
+						var node = document.createElement("NO-SCRIPT");
+						node.style.display = "none";
+						return node;
+					}
+
+					// if (tagName == "HEAD") {
+					// 	var node = document.createElement("HEAD");
+					// 	node.appendChild(document.createElement("BASE"));
+					// 	node.firstChild.href = base;
+					// 	return node;
+					// }
+				},
+				setAttribute: function(node, attr, val) {
+					// remove anchors's onclick dom0-style handlers so they
+					// don't mess with our click handler and don't produce errors
+					if (node.nodeName == "A" && attr == "onclick") {
+						return true;
+					}
+				}
+			};
+
+			window.onload = () => {
+				var treeMirror = new TreeMirrorClient(document, mirrorParams);
+			};
+		</script>
+	</head>
+	<body>
+		<div>
+			<h1>Hey</h1>
+		</div>
+		<h2>Rarr</h2>
+	</body>
+</html>

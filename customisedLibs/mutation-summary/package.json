@@ -1,0 +1,53 @@
+{
+  "_from": "mutation-summary",
+  "_id": "mutation-summary@0.1.1",
+  "_inBundle": false,
+  "_integrity": "sha1-DL2wyZGx+yWWV8yCueVxClOkFqk=",
+  "_location": "/mutation-summary",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "mutation-summary",
+    "name": "mutation-summary",
+    "escapedName": "mutation-summary",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/mutation-summary/-/mutation-summary-0.1.1.tgz",
+  "_shasum": "0cbdb0c991b1fb259657cc82b9e5710a53a416a9",
+  "_spec": "mutation-summary",
+  "_where": "/Users/heathlogancampbell/Documents/workspace/TrackingBeeWorkSpace/Recorder/changeListener",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/rafaelw/mutation-summary/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Makes observing the DOM fast and easy",
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*"
+  },
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "homepage": "https://github.com/rafaelw/mutation-summary#readme",
+  "license": "Apache 2.0",
+  "main": "src/mutation-summary.js",
+  "name": "mutation-summary",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafaelw/mutation-summary.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.1.1"
+}
