@@ -24,6 +24,20 @@
 				console.log(msg);
 			});
 
+			this.styleSheets = [];
+			if (document.styleSheets && document.styleSheets.length > 0) {
+				for (var e = 0; e < document.styleSheets.length; e++) {
+					this.styleSheets.push(document.styleSheets[e].href);
+				}
+			}
+			console.log("stylesheets");
+			console.log(this.styleSheets);
+
+			socket.emit("recorder", {
+				type: "stylesheets",
+				args: [this.styleSheets]
+			});
+
 			var mirrorParams = {
 				initialize: function(rootId, children) {
 					// console.log("init");
@@ -68,20 +82,6 @@
 			};
 
 			window.onload = () => {
-				this.styleSheets = [];
-				if (document.styleSheets && document.styleSheets.length > 0) {
-					for (var e = 0; e < document.styleSheets.length; e++) {
-						this.styleSheets.push(document.styleSheets[e].href);
-					}
-				}
-				console.log("stylesheets");
-				console.log(this.styleSheets);
-
-				socket.emit("recorder", {
-					type: "stylesheets",
-					args: [this.styleSheets]
-				});
-
 				var treeMirror = new TreeMirrorClient(
 					document.getElementsByTagName("html")[0],
 					mirrorParams
