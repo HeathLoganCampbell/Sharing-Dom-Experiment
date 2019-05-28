@@ -13,6 +13,11 @@
 			var socket = io();
 
 			socket.on("player", function(msg) {
+				if (msg.type == "stylesheets") {
+					console.log("download");
+					console.log(msg.args);
+					return;
+				}
 				mirror[msg.type].apply(mirror, msg.args);
 			});
 

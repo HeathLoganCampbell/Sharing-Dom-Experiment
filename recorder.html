@@ -8,6 +8,15 @@
 		<script src="customisedLibs/mutation-summary/src/mutation-summary.js"></script>
 		<script src="customisedLibs/mutation-summary/util/tree-mirror.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+			integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+			crossorigin="anonymous"
+		/>
+
+		<link rel="stylesheet" href="./style.css" crossorigin="anonymous" />
+
 		<script>
 			var socket = io();
 
@@ -59,7 +68,26 @@
 			};
 
 			window.onload = () => {
-				var treeMirror = new TreeMirrorClient(document.body, mirrorParams);
+				this.styleSheets = [];
+				if (document.styleSheets && document.styleSheets.length > 0) {
+					for (var e = 0; e < document.styleSheets.length; e++) {
+						this.styleSheets.push(document.styleSheets[e].href);
+					}
+				}
+				console.log("stylesheets");
+				console.log(this.styleSheets);
+
+				socket.emit("recorder", {
+					type: "stylesheets",
+					args: [this.styleSheets]
+				});
+
+				var treeMirror = new TreeMirrorClient(
+					document.getElementsByTagName("html")[0],
+					mirrorParams
+				);
+
+				// socket.emit("")
 			};
 		</script>
 	</head>
@@ -68,5 +96,11 @@
 			<h1>Hey</h1>
 		</div>
 		<h2>Rarr</h2>
+		<button
+			onClick="document.getElementsByTagName('h1')[0].innerText = Date()"
+		>
+			Update header to time
+		</button>
+		<textarea>Testing typing</textarea>
 	</body>
 </html>
