@@ -27,7 +27,7 @@
 	"dependencies": {
 		"body-parser": "^1.19.0",
 		"circular-json": "^0.5.9",
-		"express": "^4.15.2",
+		"express": "^4.17.3",
 		"mutation-summary": "^0.1.1",
 		"socket.io": "^2.4.0"
 	}
